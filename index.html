@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <!-- Firebase -->
+    <script src="./node_modules/firebase/firebase.js"></script>
+
+    <!-- Modules -->
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="./node_modules/sammy/lib/sammy.js"></script>
+    <script src="./node_modules/sammy/lib/plugins/sammy.handlebars.js"></script>
+
+    <!-- Scripts -->
+    <script src="./scripts/app.js" type="module"></script>
+</head>
+
+<body>
+
+    <div id="container">
+
+        <!-- Header -->
+        <nav>
+            <div class="left-container">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/userdestinations">Destinations</a></li>
+                    <li><a href="/adddestination">Add +</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                </ul>
+            </div>
+            <div class="right-container">
+                <span>Welcome, {name} |</span>
+                <a href="/logout" class="log-out">Logout</a>
+            </div>
+        </nav>
+
+        <!-- Notifications -->
+<div>
+    <div class="notification loadingBox">
+        Loading …
+    </div>
+    <div class="notification infoBox">
+        Info
+    </div>
+    <div class="notification errorBox">
+        Error: destination name can't be empty!
+    </div>
+</div>
+
+        <div id="root">
+
+
+        </div>
+
+        <!-- Footer  -->
+        <footer>@SoftUni Destinations 2020</footer>
+    </div>
+
+</body>
+
+
+
+</html>
+
+<script>
+
+        let notificationElementLoading = document.getElementsByClassName('notification loadingBox')[0];
+        let notificationElementInfo = document.getElementsByClassName('notification infoBox')[0];
+        let notificationElementError = document.getElementsByClassName('notification errorBox')[0];
+
+        notificationElementLoading.addEventListener('click' , (e) => {
+            e.target.style.display = 'none';
+        })
+
+        notificationElementInfo.addEventListener('click' , (e) => {
+            e.target.style.display = 'none';
+        })
+
+        notificationElementError.addEventListener('click' , (e) => {
+            e.target.style.display = 'none';
+        })
+
+
+
+
+
+    function notify(message, type = 'info') {
+        let notificationElementLoading = document.getElementsByClassName('notification loadingBox')[0];
+        let notificationElementInfo = document.getElementsByClassName('notification infoBox')[0];
+        let notificationElementError = document.getElementsByClassName('notification errorBox')[0];
+        notificationElementLoading.style.display = 'none';
+        notificationElementInfo.style.display = 'none';
+        notificationElementError.style.display = 'none';
+
+
+        switch (type) {
+            case 'loading':
+                notificationElementLoading.innerHTML = message;
+                notificationElementLoading.style.display = 'block';
+                setTimeout(() => {
+                    notificationElementLoading.style.display = 'none';
+                }, 3000);
+                break;
+            case 'info':
+            notificationElementInfo.innerHTML = message;
+            notificationElementInfo.style.display = 'block';
+                setTimeout(() => {
+                    notificationElementInfo.style.display = 'none';
+                }, 3000);
+                break;
+            case 'error':
+            notificationElementError.innerHTML = message;
+            notificationElementError.style.display = 'block';
+                setTimeout(() => {
+                    notificationElementError.style.display = 'none';
+                }, 3000);
+                break;
+        }
+
+    }
+
+    
+</script>
