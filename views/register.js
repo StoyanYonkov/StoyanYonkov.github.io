@@ -76,7 +76,7 @@ class Register extends HTMLElement {
         notify('User registration successful.', 'info');
        // console.log(res)
        // console.log(getUserData());
-        
+        Router.go('/');
   
         })
         .catch(err => {
